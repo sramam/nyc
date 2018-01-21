@@ -45,7 +45,7 @@ if (argv._[0] === 'report') {
 
   var env = {
     NYC_CONFIG: JSON.stringify(argv),
-    NYC_CWD: process.cwd(),
+    NYC_CWD: process.env.NYC_CWD || process.cwd(),
     NYC_ROOT_ID: nyc.rootId,
     NYC_INSTRUMENTER: argv.instrumenter
   }
