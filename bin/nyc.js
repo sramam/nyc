@@ -85,14 +85,14 @@ if (argv._[0] === 'report') {
 }
 
 function report (argv) {
-  process.env.NYC_CWD = process.cwd()
+  process.env.NYC_CWD = process.env.NYC_CWD || process.cwd()
 
   var nyc = new NYC(argv)
   nyc.report()
 }
 
 function checkCoverage (argv, cb) {
-  process.env.NYC_CWD = process.cwd()
+  process.env.NYC_CWD = process.env.NYC_CWD || process.cwd()
 
   ;(new NYC(argv)).checkCoverage({
     lines: argv.lines,
