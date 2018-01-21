@@ -39,6 +39,7 @@ function NYC (config) {
   config = config || {}
   this.config = config
 
+  console.log(this.config);
   this.subprocessBin = config.subprocessBin || path.resolve(__dirname, './bin/nyc.js')
   this._tempDirectory = config.tempDirectory || './.nyc_output'
   this._instrumenterLib = require(config.instrumenter || './lib/instrumenters/istanbul')
@@ -46,7 +47,7 @@ function NYC (config) {
   this._sourceMap = typeof config.sourceMap === 'boolean' ? config.sourceMap : true
   this._showProcessTree = config.showProcessTree || false
   this._eagerInstantiation = config.eager || false
-  this.cwd = config.cwd || process.cwd()
+  this.cwd = config.cwd || process.env.NYC_CWD || process.cwd()
   this.reporter = arrify(config.reporter || 'text')
 
   this.cacheDirectory = config.cacheDir || findCacheDir({name: 'nyc', cwd: this.cwd})
